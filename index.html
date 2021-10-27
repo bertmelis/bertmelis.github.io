@@ -1,0 +1,24 @@
+---
+layout: default
+title: Home
+copyright: 2021
+---
+
+<!-- Featured-->
+<div class="featured-posts outer">
+    {% for post in site.posts %}
+        {% if post.featured == true %}
+            {% include featuredbox.html %}
+        {% endif %}
+    {% endfor %}
+</div>
+
+<!-- Latest Posts -->
+<div class="outer">
+    <div class="post-feed-title inner">Latest Articles</div>
+    <div class="post-feed inner-wide">
+        {% for post in site.posts limit:3 %}
+            {% include postbox.html %}
+        {% endfor %}
+    </div>
+</div>

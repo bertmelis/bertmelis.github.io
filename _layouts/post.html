@@ -1,0 +1,116 @@
+---
+layout: default
+disqus: false
+post_class: post-template
+---
+{% include reading_time.html %}
+<div id="content" class="site-content fadeInDown delay_075s">
+    <main id="main" class="site-main outer">
+        <article class="post-full inner">
+            <header class="post-header">
+                <h1 class="posttitle">{{ page.title }}</h1>
+                <div class="post-meta">
+                    <time class="post-date" datetime="{{ page.date | date: "%Y-%m-%d" }}">{{ page.date | date: "%B %-d,
+                        %Y" }}</time>
+                         - {{ reading_time }}
+                </div><!-- .post-meta -->
+            </header><!-- .post-header -->
+            {% if page.content contains site.excerpt_separator %}
+            <div class="post-content">
+                {{ page.excerpt }}
+            </div>
+            {% endif %}
+            {% if page.featured_image %}
+            <div class="post-thumbnail"><img class="featured-image img-fluid" src="{{ site.baseurl }}{{ page.featured_image }}"
+                    alt="{{ page.title }}"></div>
+            {% endif %}
+            <div class="post-content">
+            {% if page.content contains site.excerpt_separator %}
+                {{ content | remove: page.excerpt }}
+            {% else %}
+                {{ content }}
+            {% endif %}
+            </div>
+            <footer class="post-footer">
+                {% if page.tags.size > 0 %}
+                <p class="post-tags">
+                    {% for tag in page.tags %}
+                    <a href="{{ 'tags' | absolute_url }}/{{ tag | replace: ' ', '-' }}/"">{{ tag | camelcase }}</a>
+                    {% endfor %}
+                </p>
+                {% endif %}
+                <div class="post-share">
+                    <span class="post-share-title">Share:</span>
+                    <a target="_blank" href="https://twitter.com/share?text={{ page.title | url_encode }}&amp;url={{ site.production_url }}{{ page.url | remove_first: '/' }}">Twitter</a>
+                    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ site.production_url }}{{ page.url | remove_first: '/' }}">Facebook</a>
+                </div><!-- .share-post -->
+            </footer>
+            <div class="author-box">
+                <div class="author-avatar"><img src="{{ site.baseurl }}assets/images/{{ site.author.image }}" alt="{{ site.author.name }}'s Picture"
+                        class="avatar"></div>
+                <div class="author-details">
+                    <h2 class="author-title">About {{ site.author.name }}</h2>
+                    <p class="author-description">{{ site.author.bio }}</p>
+                </div>
+            </div>
+        </article>
+        <section class="read-next inner">
+            <h2 class="read-next-title">Read Next</h2>
+            {% if page.previous.url %}
+            <article class="post">
+                <header class="post-header">
+                    <div class="post-meta">
+                        <time class="published" datetime="{{page.previous.date | date: '%B %-d, %Y'}}">{{page.previous.date
+                            | date: "%B %-d, %Y"}}</time>
+                    </div>
+                    <h3 class="post-title"><a href="{{page.previous.url}}">{{page.previous.title}}</a></h3>
+                    <p class="post-tags">
+                        {% if page.previous.tags.size > 0 %}
+                        {% for tag in page.previous.tags %}
+                        <a href='{{ site.baseurl }}tags/{{ tag | downcase | replace: ' ', '-' }}/'>{{ tag | capitalize }}</a>
+                        {% endfor %}
+                        {% endif %}
+                    </p>
+                </header>
+                {% if page.previous.featured_image_thumbnail %}
+                <a href="{{page.previous.url}}" class="post-thumbnail">
+                    <img src="/{{ page.previous.featured_image_thumbnail }}" alt="{{page.previous.title}}" />
+                </a>
+                {% elsif page.previous.featured_image %}
+                <a href="{{page.previous.url}}" class="post-thumbnail">
+                    <img src="/{{ page.previous.featured_image }}" alt="{{page.previous.title}}" />
+                </a>
+                {% else %}
+                {% endif %}
+            </article>
+            {% endif %}
+            {% if page.next.url %}
+            <article class="post">
+                <header class="post-header">
+                    <div class="post-meta">
+                        <time class="published" datetime="{{page.next.date | date: '%B %-d, %Y'}}">{{page.next.date |
+                            date: "%B %-d, %Y"}}</time>
+                    </div>
+                    <h3 class="post-title"><a href="{{page.next.url}}">{{page.next.title}}</a></h3>
+                    <p class="post-tags">
+                        {% if page.next.tags.size > 0 %}
+                        {% for tag in page.next.tags %}
+                        {% include taglink.html %}
+                        {% endfor %}
+                        {% endif %}
+                    </p>
+                </header>
+                {% if page.next.featured_image_thumbnail %}
+                <a href="{{ page.next.url }}" class="post-thumbnail">
+                    <img src="/{{ page.next.featured_image_thumbnail }}" alt="{{page.next.title}}" />
+                </a>
+                {% elsif page.next.featured_image %}
+                <a href="{{ page.next.url }}" class="post-thumbnail">
+                    <img src="/{{ page.next.featured_image }}" alt="{{page.next.title}}" />
+                </a>
+                {% endif %}
+            </article>
+            {% endif %}
+        </section><!-- .read-next -->
+    </main><!-- .site-main -->
+</div><!-- .site-content -->

@@ -1,0 +1,28 @@
+---
+layout: default
+current: tag
+title: Tag Page
+class: 'tag-template'
+---
+<div id="content" class="site-content fadeInDown delay_075s">
+    <main id="main" class="site-main outer">
+        <header class="page-header inner">
+            <h1 class="page-title">Tag: {{ page.tag }}</h1>
+            <p class="page-description">A collection of {{ site.tags[page.tag].size }} posts.</p>
+        </header>
+        <div class="post-feed inner-wide">
+            {% for post in site.tags[page.tag] %}
+            <article class="post">
+                    <header class="post-header">
+                        <div class="post-meta">
+                            <time class="published" datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%B %-d, %Y" }}</time>
+                        </div><!-- .post-meta -->
+                        <p class="post-title">
+                            <a href="{{ post.url | relative_url }}" rel="bookmark">{{ post.title }}</a>
+                        </p>
+                  </header><!-- .post-header -->
+            </article><!-- .post -->
+            {% endfor %}
+        </div>
+    </main><!-- .site-main -->
+</div><!-- .site-content -->

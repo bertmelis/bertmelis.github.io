@@ -1,0 +1,47 @@
+---
+layout: default
+title: Contact Me
+copyright: 2021
+---
+
+<!--
+  To make this form work you have to:
+  1. defined "email: youremail@email.com" in _config.yml file.
+  2. verify your form on formspree.io.
+-->
+
+<div id="content" class="site-content fadeInDown delay_075s">
+  <main id="main" class="site-main outer">
+    <div class="inner">
+      <h1 class="post-title">Contact Me</h1>
+      <p>Drop me a note or ask me a question.</p>
+      <section class="contact-form">
+        <form action="https://formspree.io/f/xqkwawow" method="post" id="contact-form">
+          <fieldset id="fs-frm-inputs">
+          <div class="form-item">
+            <label for="email-address" class="form-label">Your Email <span>(required)</span></label>
+            <input name="_replyto" id="email-address" type="text" placeholder="Your email address..." class="form-input" />
+          </div>
+
+          <div class="form-item">
+            <label for="full-name" class="form-label">Your Name <span>(required)</span></label>
+            <input name="name" id="full-name" type="text" placeholder="Your name..." class="form-input" />
+          </div>
+
+          <div class="form-item">
+            <label for="message" class="form-label">Your Message <span>(required)</span></label>
+            <textarea name="message" id="message" placeholder="Your message..." class="form-textarea"></textarea>
+          </div>
+
+          <input type="hidden" name="_next" value="/thank-you" />
+          <input type="hidden" name="_subject" value="Contact form submission" />
+          <input type="text" name="_gotcha" style="display: none;" class="contact-form__gotcha" val="" />
+          </fieldset>
+          <div class="form-item">
+            <input type="submit" value="Send Message" class="button" />
+          </div>
+        </form>
+      </section>
+    </div><!-- .inner-->
+  </main>
+</div>

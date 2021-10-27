@@ -1,0 +1,40 @@
+---
+layout: default
+title: Posts
+copyright: 2021
+---
+
+<div class="outer">
+    <div class="post-feed-title inner">Latest Articles</div>
+    <div class="post-feed inner-wide">
+        {% for post in paginator.posts %}
+            {% include postbox.html %}
+        {% endfor %}
+    </div>
+</div>
+{% include pagination.html %}
+
+{% capture temptags %}
+  {% for tag in site.tags %}
+    {{ tag[1].size | plus: 1000 }}#{{ tag[0] }}#{{ tag[1].size }}
+  {% endfor %}
+{% endcapture %}
+{% assign sortedtemptags = temptags | split:' ' | sort | reverse %}
+<div class="outer">
+    <div class="post-feed-title inner">Tags</div>
+    <div class="post-feed inner-wide">
+        <div class="taglist">
+            {% comment %}
+            {% for tag in sortedTags %}
+            {% comment %}<a href='{{ site.baseurl }}tags/{{ tag | downcase | replace: ' ', '- ' }}/'>{{ tag | camelcase }}</a>{% endcomment %}
+            <a href='{{ site.baseurl }}tags/{{ tag | replace: ' ', '- ' }}/'>{{ tag | camelcase }}</a>
+            {% endfor %}
+            {% endcomment %}
+            {% for temptag in sortedtemptags %}
+                {% assign tagitems = temptag | split: '#' %}
+                {% capture tagname %}{{ tagitems[1] }}{% endcapture %}
+                <a href="/tags/{{ tagname }}"><code class="highligher-rouge"><nobr>{{ tagname }}</nobr></code></a>
+            {% endfor %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include head.html %}
+
+{% capture layout %}{% if page.layout %}layout-{{ page.layout }}{% endif %}{% endcapture %}
+
+<body class="{{ layout }}">
+    <div id="page" class="site">
+        {% if page.url == "/" %}
+        <div class="hero-wrap">
+            {% if site.home_image %}
+            <div class="hero-wrap-bg" style="background-image: url({{ 'assets/images/' | relative_url }}{{ site.home_image }})"></div>
+            {% endif %}
+            {% include header.html %}
+            <section class="hero outer fadeInDown delay_075s">
+                <div class="inner">
+                    {% include author.html %}
+                </div><!-- .inner -->
+            </section><!-- .hero -->
+        </div><!-- .hero-wrap -->
+        {% elsif page.url == "/about" %}
+        <div class="hero-wrap">
+            {% if site.about_image %}
+            <div class="hero-wrap-bg" style="background-image: url({{ 'assets/images/' | relative_url }}{{ site.about_image }})"></div>
+            {% endif %}
+            {% include header.html %}
+            <section class="hero outer fadeInDown delay_075s">
+                <div class="inner">
+                    {% include author.html %}
+                </div><!-- .inner -->
+            </section><!-- .hero -->
+        </div><!-- .hero-wrap -->
+
+        {% else %}
+        {% include header.html %}
+        {% endif %}
+
+        {{ content }}
+
+        <footer id="colophon" class="site-footer outer">
+            <div class="site-footer-inside">
+                {% include social-links.html %}
+                <p class="site-info">
+                    <a href="#">{{ site.name }}</a> &copy; {% comment %} {{ site.time | date: '%Y' }} {% endcomment %} {{ page.copyright }} . <br />
+                    Powered by <a target="_blank" href="https://jekyllrb.com/">Jekyll</a>.
+                </p>
+                <p class="back-to-top">
+                    <a id="top-button" class="top-button" href="#page">
+                        <span class="icon-arrow-up" aria-hidden="true"></span>
+                        <span class="screen-reader-text">Back to top</span>
+                    </a>
+                </p>
+            </div><!-- .site-footer-inside -->
+        </footer><!-- .site-footer -->
+    </div><!-- .site -->
+    <div id="site-overlay" class="site-overlay"></div>
+    {% include sidebar.html %}
+    {% include analytics.html %}
+    <script src="{{ 'assets/js/jquery-3.3.1.min.js' | relative_url }}"></script>
+    <script src="{{ 'assets/js/plugins.js' | relative_url }}"></script>
+    <script src="{{ 'assets/js/custom.js' | relative_url }}"></script>
+
+</body>
+
+</html>

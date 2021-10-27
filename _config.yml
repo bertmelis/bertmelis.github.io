@@ -1,0 +1,77 @@
+# Site setings
+name: 'Bert&apos;s blog'
+description: 'This blog saw the light during the Christmas holidays when I grew tired of manually switching on the tree&apos;s lights.'
+meta_description: 'A personal blog about IoT and related stuff.'
+logo: 'assets/images/signature_logo.png'
+favicon: 'assets/images/favicon.ico'
+baseurl: / # for examle: / or 'subdir/'
+production_url: http://bert.emelis.net/
+home_image: warsaw.jpg
+about_image: bialowieza.jpg
+# Add your GA Tracking Id
+#ga_analytics: UA-49980823-11
+excerpt_separator: <!--more-->
+
+author:
+  name: 'Bert Melis'
+  image: 'authorimage.jpg'
+  greetings: 'Hi, cześć, hallo!'
+  description: "On this blog you can read about my IoT projects. I also might share my recipe for Béarnaise sauce with you."
+  bio: 'My name is Bert Melis. I&apos;m a reliability engineer by profession and a IoT enthusiast by heart. I try to make my small home smart without spending too much money.'
+
+# Social links
+github: 'bertmelis'
+linkedin: 'bertmelis'
+
+# Navigation
+navigation:
+  - text: About
+    url: /about
+  - text: Posts
+    url: /posts
+  - text: Projects
+    url: /projects
+  - text: Contact Me
+    url: /contact
+
+# Required Plugins
+plugins_dir:
+  - jekyll-paginate
+  - jekyll-seo-tag
+  - jekyll-sitemap
+# not supported on github pages
+#  - jekyll-tagsgenerator
+
+# Pagination
+paginate: 5
+paginate_path: /posts/page:num
+
+# Permalinks
+permalink: /posts/:title
+
+# Other
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+
+include:
+  - site.webmanifest
+  - sitemap.xml
+  - feed.xml
+  - robots.txt
+
+# Exclude
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - todo
+  - drafts
+  - bundle
+  - README.md
+
+# Sass
+sass:
+  sass_dir: _sass
+  style: compressed
