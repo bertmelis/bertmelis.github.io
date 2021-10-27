@@ -2,7 +2,7 @@
     <header class="post-header">
         <div class="post-meta">
             <span class="featured-badge">Featured</span> &sol; {{/if}}
-            <time class="published" datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%B %-d, %Y" }}</time>
+            <time class="published" datetime="{{ post.date | date: "%Y-%m-%d" }}">{{ post.date | date: "%d %B %Y" }}</time>
         </div><!-- .post-meta -->
         <h2 class="post-title">
             <a href="{{ post.url | relative_url }}" rel="bookmark">{{ post.title }}</a>
