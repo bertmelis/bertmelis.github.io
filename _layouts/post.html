@@ -67,7 +67,7 @@ post_class: post-template
                     <p class="post-tags">
                         {% if page.previous.tags.size > 0 %}
                         {% for tag in page.previous.tags %}
-                        <a href='{{ site.baseurl }}tags/{{ tag | downcase | replace: ' ', '-' }}/'>{{ tag | capitalize }}</a>
+                        {% include taglink.html %}
                         {% endfor %}
                         {% endif %}
                     </p>
