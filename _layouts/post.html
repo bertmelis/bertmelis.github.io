@@ -35,7 +35,7 @@ post_class: post-template
                 {% if page.tags.size > 0 %}
                 <p class="post-tags">
                     {% for tag in page.tags %}
-                    <a href="{{ 'tags' | absolute_url }}/{{ tag | replace: ' ', '-' }}/"">{{ tag | camelcase }}</a>
+                    {% include taglink.html %}
                     {% endfor %}
                 </p>
                 {% endif %}
