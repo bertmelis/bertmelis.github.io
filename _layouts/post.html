@@ -21,7 +21,7 @@ post_class: post-template
             </div>
             {% endif %}
             {% if page.featured_image %}
-            <div class="post-thumbnail"><img class="featured-image img-fluid" src="{{ site.baseurl }}{{ page.featured_image }}"
+            <div class="post-thumbnail"><img class="featured-image img-fluid" src="{{ page.featured_image | relative_url }}"
                     alt="{{ page.title }}"></div>
             {% endif %}
             <div class="post-content">
