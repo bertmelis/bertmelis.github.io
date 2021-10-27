@@ -14,7 +14,6 @@ excerpt_separator: <!--more-->
 
 author:
   name: 'Bert Melis'
-  image: '/assets/images/authorimage.jpg'
   greetings: 'Hi, cześć, hallo!'
   description: "On this blog you can read about my IoT projects. I also might share my recipe for Béarnaise sauce with you."
   bio: 'My name is Bert Melis. I&apos;m a reliability engineer by profession and a IoT enthusiast by heart. I try to make my small home smart without spending too much money.'
