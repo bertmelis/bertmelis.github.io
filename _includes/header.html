@@ -2,7 +2,7 @@
     <div class="site-header-inside">
         <div class="site-branding">
             {% if site.logo != null %}
-                <p class="site-logo"><a href="{{ site.baseurl }}" rel="home"><img src="/{{ site.logo }}" alt="{{ site.name }}" /></a></p>
+                <p class="site-logo"><a href="{{ "/" | absolute_url }}" rel="home"><img src="/{{ site.logo }}" alt="{{ site.name }}" /></a></p>
                 <h1 class="site-title screen-reader-text"><a href="{{ site.baseurl }}" rel="home">{{ site.name }}</a></h1>
             {% else %}
                 <h1 class="site-title"><a href="{{ site.baseurl }}" rel="home">{{site.name}}</a></h1>
