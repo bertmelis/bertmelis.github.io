@@ -19,7 +19,7 @@
                 {% endfor %} {% endif %}
             </p>
         <p class="read-more">
-            <a class="button" href="{{ post.url | relative_url }}" class="more-link">Continue reading</a>
+            <a class="button more-link" href="{{ post.url | relative_url }}">Continue reading</a>
         </p>
         {% else %}
             <p>{{ post.content }}</p>
