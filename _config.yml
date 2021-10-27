@@ -8,8 +8,7 @@ baseurl: / # for examle: / or 'subdir/'
 production_url: http://bert.emelis.net/
 home_image: warsaw.jpg
 about_image: bialowieza.jpg
-# Add your GA Tracking Id
-#ga_analytics: UA-49980823-11
+ga_analytics: G-BYL2MXTH4E
 excerpt_separator: <!--more-->
 
 author:
