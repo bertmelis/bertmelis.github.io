@@ -2,8 +2,8 @@
 layout: post
 title: 'Self signed certificates in Windows 11'
 tags: self-signed certificates Windows
-featured_image_thumbnail: assets/images/posts/certswin/notary_thumbnail.jpg
-featured_image: assets/images/posts/certswin/notary.jpg
+featured_image_thumbnail: assets/images/posts/certswin/lock_thumbnail.jpg
+featured_image: assets/images/posts/certswin/lock.jpg
 featured: false
 hidden: false
 ---
@@ -57,11 +57,11 @@ With the list of certificates in the middle pane, right click on "Certificates" 
 
 Click "Next"
 
-![Import wizard 2](/assets/images/posts/certswin/08-import2.png)
+![Import wizard 2](/assets/images/posts/certswin/09-import2.png)
 
 Browse to your root certificate (`keys/ca/root-ca.crt`) and click "Next".
 
-![Import wizard 3](/assets/images/posts/certswin/08-import3.png)
+![Import wizard 3](/assets/images/posts/certswin/10-import3.png)
 
 Click "Next" again. The wizard already selected the right option for us to store the new certificate in the right store.
 
