@@ -1,14 +1,14 @@
 ---
 layout: post
-title: 'Self signed certificates in Firefox'
-tags: self-signed certificates Firefox
+title: 'Self signed certificates in Firefox Ubuntu'
+tags: self-signed certificates Firefox Ubuntu
 featured_image_thumbnail: assets/images/posts/firefox/notary_thumbnail.jpg
 featured_image: assets/images/posts/firefox/notary.jpg
 featured: false
 hidden: false
 ---
 
-Even if you have imported your self-signed root certificate to your system, Firefox won't use it. This has to be solved and I found a way.
+Even if you have imported your self-signed root certificate to your Ubuntu system, Firefox won't use it. This has to be solved and I found a way.
 
 <!--more-->
 
