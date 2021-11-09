@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Certificate management'
-tags: [OpenSSL, server]
+tags: OpenSSL self-signed certificates server
 featured_image_thumbnail: assets/images/posts/certman/lock_thumbnail.jpg
 featured_image: assets/images/posts/certman/lock.jpg
 featured: false
@@ -21,6 +21,7 @@ ATTENTION: Private keys are to be kept strictly private so you don't want the ke
 ## Preparation
 
 You probably already have everything installed on your system. I'm creating the certificates on my Lubuntu laptop and afterwards I'll transfer them to the server.
+It works equally fine in WSL or WSL2 on Windows.
 
 In case you haven't installed anything yet:
 
@@ -100,10 +101,10 @@ default_crl_days        = 365                   # How long before next CRL
 crl_extensions          = crl_ext               # CRL extensions
 
 [ match_pol ]
-countryName             = match                 # Must match 'NO'
+countryName             = match                 # Must match 'US'
 stateOrProvinceName     = optional              # Included if present
 localityName            = optional              # Included if present
-organizationName        = match                 # Must match 'Green AS'
+organizationName        = match                 # Must match 'Acme'
 organizationalUnitName  = supplied              # Must be present
 commonName              = supplied              # Must be present
 
@@ -206,10 +207,10 @@ default_crl_days        = 1                     # How long before next CRL
 crl_extensions          = crl_ext               # CRL extensions
 
 [ match_pol ]
-countryName             = match                 # Must match 'NO'
+countryName             = match                 # Must match 'US'
 stateOrProvinceName     = optional              # Included if present
 localityName            = optional              # Included if present
-organizationName        = match                 # Must match 'Green AS'
+organizationName        = match                 # Must match 'Acme'
 organizationalUnitName  = supplied              # Must be present
 commonName              = supplied              # Must be present
 

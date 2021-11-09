@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Self signed certificates in Firefox'
-tags: OpenSSL self-signed Firefox
+tags: self-signed certificates Firefox
 featured_image_thumbnail: assets/images/posts/firefox/notary_thumbnail.jpg
 featured_image: assets/images/posts/firefox/notary.jpg
 featured: false
