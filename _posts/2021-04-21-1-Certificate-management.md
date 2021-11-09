@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Certificate management'
-tags: OpenSSL server
+tags: [OpenSSL, server]
 featured_image_thumbnail: assets/images/posts/certman/lock_thumbnail.jpg
 featured_image: assets/images/posts/certman/lock.jpg
 featured: false
@@ -15,6 +15,8 @@ OpenSSL and certificate management is a somewhat black box to me. So I thought I
 There are a lot of OpenSSL tutorials online to create you self-signed certificates. And in fact, when you have a public facing service you'd better stick to trusted platforms like [Let's Encrypt](www.letsencrypt.org). For our internal services I'm trustworthy enough to have my own certificate authority. I want to create certificates for my OpenVPN server, my Mosquitto broker and the Cockpit control panel.
 
 DISCLAIMER: The following steps are from [https://pki-tutorial.readthedocs.io/en/latest/index.html](https://pki-tutorial.readthedocs.io/en/latest/index.html). They are more elaborate than most other guides but the steps are clear, understandable and you learn how the chain of trust works.
+
+ATTENTION: Private keys are to be kept strictly private so you don't want the key-files to be exposed to the Internet. It is best to setup the key infrastructure on a computer that is not connected to the Internet to prevent any unauthorized access. Alternatively, instead of generating the PKI in your home directory, you can put all the files on removeable media like an USB stick and store it somewhere safe.
 
 ## Preparation
 
@@ -39,12 +41,12 @@ $ touch etc/root-ca.conf etc/tls-ca.conf etc/tls-server.conf etc/tls-client.conf
 File `etc/root-ca.conf`
 
 ```
-# Treelight Root CA
+# ACME Root CA
 
 [ default ]
 ca                      = root-ca                   # CA name
 dir                     = .                         # Top dir
-base_url                = http://treelight.io/ca    # CA base URL
+base_url                = http://www.acme.com/ca    # CA base URL
 aia_url                 = $base_url/$ca.cer         # CA certificate URL
 crl_url                 = $base_url/$ca.crl         # CRL distribution point
 name_opt                = multiline,-esc_msb,utf8   # Display UTF-8 characters
@@ -62,10 +64,10 @@ distinguished_name      = ca_dn                 # DN section
 req_extensions          = ca_reqext             # Desired extensions
 
 [ ca_dn ]
-countryName             = "BE"
-organizationName        = "Treelight"
-organizationalUnitName  = "Treelight Certificate Authority"
-commonName              = "Treelight Root CA"
+countryName             = "US"
+organizationName        = "Acme"
+organizationalUnitName  = "Acme Certificate Authority"
+commonName              = "Acme Root CA"
 
 [ ca_reqext ]
 keyUsage                = critical,keyCertSign,cRLSign
@@ -145,12 +147,12 @@ URI.0                   = $crl_url
 In file `etc/tls-ca.conf`
 
 ```
-# Treelight TLS CA
+# Acme TLS CA
 
 [ default ]
 ca                      = tls-ca                # CA name
 dir                     = .                     # Top dir
-base_url                = http://www.treelight.io/ca    # CA base URL
+base_url                = http://www.acme.com/ca    # CA base URL
 aia_url                 = $base_url/$ca.cer     # CA certificate URL
 crl_url                 = $base_url/$ca.crl     # CRL distribution point
 name_opt                = multiline,-esc_msb,utf8 # Display UTF-8 characters
@@ -168,10 +170,10 @@ distinguished_name      = ca_dn                 # DN section
 req_extensions          = ca_reqext             # Desired extensions
 
 [ ca_dn ]
-countryName             = "BE"
-organizationName        = "Treelight"
-organizationalUnitName  = "Treelight Certificate Authority"
-commonName              = "Treelight TLS CA"
+countryName             = "US"
+organizationName        = "Acme"
+organizationalUnitName  = "Acme Certificate Authority"
+commonName              = "Acme TLS CA"
 
 [ ca_reqext ]
 keyUsage                = critical,keyCertSign,cRLSign
@@ -266,7 +268,7 @@ In file `etc/tls-server.conf`
 # TLS server certificate request
 
 [ default ]
-SAN                     = DNS:treelight.io      # Default value
+SAN                     = DNS:acme.com      # Default value
 
 [ req ]
 default_bits            = 4096                  # RSA key size
@@ -443,7 +445,7 @@ If you look at the contents of the file, it is actually nothing more then the ro
 
 Our infrastructure is ready to create certificates that will be deployed to our servers.
 
-Let's create a certificate for our Cockpit control panel. The control panel is reachable on "cpanel.treelight.io"[^1].
+Let's create a certificate for our Cockpit control panel. The control panel is reachable on "cpanel.acme.com"[^1].
 
 [^1]: The control panel is only reachable from the LAN. It's domain name is defined in the router's dnsmasq service.
 
@@ -456,11 +458,11 @@ Our infrastructure is completely ready now. When we want to have a certificate f
 ### Create a TLS server request
 
 ```
-$ SAN=DNS:cpanel.treelight.io \
+$ SAN=DNS:cpanel.acme.com \
 openssl req -new \
     -config etc/tls-server.conf \
-    -out certs/cpanel.treelight.io.csr \
-    -keyout certs/cpanel.treelight.io.key
+    -out certs/cpanel.acme.com.csr \
+    -keyout certs/cpanel.acme.com.key
 ```
 
 Mind the environment variable we set first. We also don't set a passphrase.
@@ -470,8 +472,8 @@ Mind the environment variable we set first. We also don't set a passphrase.
 ```
 $ openssl ca \
     -config etc/tls-ca.conf \
-    -in certs/cpanel.treelight.io.csr \
-    -out certs/cpanel.treelight.io.crt \
+    -in certs/cpanel.acme.com.csr \
+    -out certs/cpanel.acme.com.crt \
     -extensions server_ext
 ```
 
@@ -480,29 +482,31 @@ If this is your first certificate, a copy will be stored under `ca/tls-ca/01.pem
 Which files do you need in your actual service?
 
 - tls-ca.crt: the public root certificate as basis of trust
-- cpanel.treelight.io.crt: the public server certificate which has the FQDN incorporated
-- cpanel.treelight.io.key: the private key to be able to decrypt
+- cpanel.acme.com.crt: the public server certificate which has the FQDN incorporated
+- cpanel.acme.com.key: the private key to be able to decrypt
 
 #### Copy to cockpit
 
 Cockpit [requires](https://cockpit-project.org/guide/228/https.html) to have the server certificate and the intermediate certificate in the same file.
+Although not mentioned in the docs, I also had to copy the private key into the same file to get it working. Also, notice the file extension change 
+when moving the certificate chain to Cockpit: `.crt` becomes `.cert`.
 
 ```
-$ cat certs/cpanel.treelight.io.crt ca/tls-ca.crt > \
-    certs/cpanel.treelight.io-chain.crt
+$ cat certs/cpanel.acme.com.crt ca/tls-ca.crt certs/cpanel.acme.com.key > certs/cpanel.acme.com-chain.crt
 ```
 
-Copy `certs/cpanel.treelight.io-chain.crt` and `certs/cpanel.treelight.io.key` to your server.
-Move them to cockpit's config directory.
+Copy `certs/cpanel.acme.com-chain.cert` to your server and place it in Cockpit's config directory.
 
 ```
-$ sudo mv cpanel.treelight.io-chain.crt /etc/cockpit/ws-certs.d/cpanel.treelight.io.crt
-$ sudo mv cpanel.treelight.io.key /etc/cockpit/ws-certs.d/cpanel.treelight.io.key
+$ sudo mv cpanel.acme.com-chain.crt /etc/cockpit/ws-certs.d/cpanel.acme.com.cert
 ```
 
-Give the files the proper ownership and permissions.
+Give the files the proper ownership and permissions:
 
-
+```
+$ sudo chown root:cockpit-ws /etc/cockpit/ws-certs.d/cpanel.acme.com.cert
+$ sudo chmod 640 /etc/cockpit/ws-certs.d/cpanel.acme.com.cert
+```
 
 ## Revoking certificates
 
@@ -547,4 +551,3 @@ You'll then have this screen:
 It still says the certificate is not trusted by Mozilla, but since you trust it Firefox won't make a fuss about it.
 
 <small>Lock photo by <a href="https://pixabay.com/users/pasja1000-6355831/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3745490">pasja1000</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3745490">Pixabay</a></small>
-  
