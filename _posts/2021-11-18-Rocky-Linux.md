@@ -28,7 +28,7 @@ In short:
 - Reboot again and follow the on screen instructions.
 
 Things I did during installation:
-- Enable network. My server get's it's IP via DHCP but with a static lease it always get's the same address.
+- Enable network. My server gets it's IP via DHCP but with a static lease it always get's the same address.
 - Adjust the timezone, and enable network time. Mind that you first have to enable network before enabling network time.
 - Enable "Security Policy". This enables SELinux.
 - Software Selection: set it to "Minimal Install". I'm freaky about this. If you're more relaxed you could opt for "Server".
