@@ -22,7 +22,7 @@ Rocky Linux has plenty of documentation and this obviously included the installa
 
 In short:
 
-- Download the appropriate image. I chose the minimal version
+- [Download](https://rockylinux.org/download/) the appropriate image. I chose the minimal version
 - Flash to an USB drive (I use BalenaEtcher for this)
 - Reboot the server and adjust the boot settings in BIOS to boot from the USB drive
 - Reboot again and follow the on screen instructions.

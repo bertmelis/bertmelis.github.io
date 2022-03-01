@@ -92,6 +92,24 @@ At least installation is simple:
 $ sudo yum install podman cockpit-podman
 ```
 
+Adjust the port range Podman is allowed to use:
+
+```
+$ sudo nano /etc/sysctl.conf
+```
+
+Add
+
+```
+net.ipv4.ip_unprivileged_port_start=80
+```
+
+And reload
+
+```
+$ sudo sysctl --system
+```
+
 ### On last thing
 
 while we're at it, we might want to enable the "extra packages for enterprise linux". Up to now we didn't need any extra packages but we might run into this in the future and who knows, cause some headscratching. It doesn't hurt to enable it:
