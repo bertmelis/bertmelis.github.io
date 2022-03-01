@@ -100,4 +100,6 @@ while we're at it, we might want to enable the "extra packages for enterprise li
 $ sudo yum install epel-release
 ```
 
+---
+
 Photo Hercule's Rock by Dzidek Lasek, https://pixabay.com/photos/paternal-national-park-autumn-2742115/
