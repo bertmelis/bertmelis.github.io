@@ -52,7 +52,7 @@ And enable by
 
 ```
 sudo enable cockpit.socket
-sudo systemctl cockpit.socket
+sudo systemctl start cockpit.socket
 ```
 
 You can now browse to http://your.server.ip:9090. Cockpit will add a firewall rule to allow traffic to port 9090.
