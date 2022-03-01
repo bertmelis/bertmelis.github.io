@@ -14,7 +14,7 @@ After the basic installation of Rocky Linux, it's time to finish the setup. We'r
 
 ### Check
 
-when you finished the [basic setup](posts/Rocky-Linux), you can log in via the terminal or via the web gui (Cockpit). Check basic settings like *hostname*, *time and timezone* and so on.
+when you finished the [basic setup](/posts/1-Rocky-Linux), you can log in via the terminal or via the web gui (Cockpit). Check basic settings like *hostname*, *time and timezone* and so on.
 
 Cockpit shosw some statistics about your system. If you want to persist them you'll have to install **pcp**. this can be done through the GUI. Alternatively, install **cockpit-pcp** using the command line:
 

@@ -12,7 +12,7 @@ OpenSSL and certificate management is a somewhat black box to me. So I thought I
 
 <!--more-->
 
-There are a lot of OpenSSL tutorials online to create you self-signed certificates. And in fact, when you have a public facing service you'd better stick to trusted platforms like [Let's Encrypt](www.letsencrypt.org). For our internal services I'm trustworthy enough to have my own certificate authority. I want to create certificates for my OpenVPN server, my Mosquitto broker and the Cockpit control panel.
+There are a lot of OpenSSL tutorials online to create you self-signed certificates. And in fact, when you have a public facing service you'd better stick to trusted platforms like [Let's Encrypt](https://www.letsencrypt.org). For our internal services I'm trustworthy enough to have my own certificate authority. I want to create certificates for my OpenVPN server, my Mosquitto broker and the Cockpit control panel.
 
 DISCLAIMER: The following steps are from [https://pki-tutorial.readthedocs.io/en/latest/index.html](https://pki-tutorial.readthedocs.io/en/latest/index.html). They are more elaborate than most other guides but the steps are clear, understandable and you learn how the chain of trust works.
 
@@ -550,5 +550,7 @@ You'll then have this screen:
 ![trusted cockpit](/assets/images/posts/certman/cockpit.jpg)
 
 It still says the certificate is not trusted by Mozilla, but since you trust it Firefox won't make a fuss about it.
+
+---
 
 <small>Lock photo by <a href="https://pixabay.com/users/pasja1000-6355831/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3745490">pasja1000</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3745490">Pixabay</a></small>

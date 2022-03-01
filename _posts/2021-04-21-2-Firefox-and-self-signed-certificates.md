@@ -79,4 +79,6 @@ when you click "View Certificates" in the settings screen, you can find your sel
 
 Unlike the answer on Ask Ubuntu, the added module is a setting that survives updates.
 
+---
+
 <small>Notary sign image by <a href="https://pixabay.com/users/tama66-1032521/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3617525">Peter H</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3617525">Pixabay</a></small>

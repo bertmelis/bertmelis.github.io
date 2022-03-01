@@ -66,11 +66,13 @@ And done!
 
 ![motherboard](/assets/images/posts/server/mb.jpg)
 
-When powering up, everything was recognized. Off course, the computer didn't boot. This is to be solved in the [next step](/posts/Basic-configuration).
+When powering up, everything was recognized. Off course, the computer didn't boot. This is to be solved in the [next step](/posts/1-Basic-configuration).
 
 Keep a USB stick (I'd say at least 500MB) at hand to install Debian. A monitor and keyboard are also handy. Somehow I never managed to create an unattended installation USB stick.
 
 ![case](/assets/images/posts/server/server.jpg)
 
 Good luck!
+
+---
   

@@ -81,5 +81,6 @@ Relabeled /etc/cockpit/ws-certs.d/your-cert.key from unconfined_u:object_r:user_
 
 You can now enable SELinux again using cockpit or on the command line (`sudo setenforce 1`).
 
+---
 
 Photo Morskie Oko by Greg Trowman, https://unsplash.com/photos/D9QmRGgxRkk

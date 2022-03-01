@@ -69,4 +69,6 @@ Click "Next" again. The wizard already selected the right option for us to store
 
 Your certificate is now added to Windows. Your computer will now trust all the certificates that have been signed by this root certificate (and derivates). You might need to restart your browser for it to work with the newly added certificate.
 
+---
+
 <small>Notary sign image by <a href="https://pixabay.com/users/tama66-1032521/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3617525">Peter H</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3617525">Pixabay</a></small>

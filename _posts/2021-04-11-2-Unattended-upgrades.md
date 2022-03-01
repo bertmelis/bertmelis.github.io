@@ -77,6 +77,8 @@ Test with:
 $ sudo unattended-upgrade -d
 ```
 
-If you installed [Logwatch](/posts/Logwatch), updates will be included in the daily report.
+If you installed [Logwatch](/posts/2-Logwatch), updates will be included in the daily report.
+
+---
 
 <small>Coffe machine Image by <a href="https://pixabay.com/users/holnsteiner-5407239/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2329366">Hans Peter Holnsteiner</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2329366">Pixabay</a></small>

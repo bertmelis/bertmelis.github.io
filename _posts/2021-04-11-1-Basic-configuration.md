@@ -180,5 +180,6 @@ commend out:
 #ff02::1 ip6-allnodes
 #ff02::2 ip6-allrouters
 ```
+---
 
 <small>Debian in the sky image by [https://www.reddit.com/r/SkyPorn/comments/mr1t3a/winter_in_finland/](https://www.reddit.com/r/SkyPorn/comments/mr1t3a/winter_in_finland/)</small>

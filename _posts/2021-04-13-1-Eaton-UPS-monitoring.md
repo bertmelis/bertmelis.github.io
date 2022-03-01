@@ -299,5 +299,7 @@ battery.type: PbAc
 
 > "I love it when a plan comes together." <cite>- Colonel John “Hannibal” Smith -</cite>
 
+---
+
 <small>Power meter photo by <a href="https://unsplash.com/@tanerardali?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">taner ardalı</a> on <a href="https://unsplash.com/s/photos/power-meter?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></small>
   
