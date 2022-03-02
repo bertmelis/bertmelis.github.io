@@ -30,6 +30,7 @@ post_class: post-template
             {% else %}
                 {{ content }}
             {% endif %}
+            {% if site.comments %}{% include comments.html %}{% endif %}
             </div>
             <footer class="post-footer">
                 {% if page.tags.size > 0 %}
