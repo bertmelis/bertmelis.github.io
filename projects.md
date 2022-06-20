@@ -7,6 +7,12 @@ copyright: 2021
 
 Image by <a href="https://pixabay.com/users/seven11nash-3644229/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1784564">Marc Mueller</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1784564">Pixabay</a>
 
+## espMqttClient
+
+espMqttClient is an MQTT client library for the Arduino framework, made for ESP8266 and ESP32. With little effort, other platforms can be supported as well.
+
+MQTT was the choise I made for communication with my IoT devices. And as a fan of non-blocking code (or even better, asynchronous code), I relied on Async-mqtt-client. It has been my go-to MQTT client for many years. It was fast, reliable and had features that were non-existing in alternative libraries. However, the underlying async TCP libraries are lacking updates, especially updates related to secure connections. I eventually decided to write my own library, from scratch (I copied the API though). [This is the result](https://github.com/bertmelis/espMqttClient).
+
 ## VitoWiFi
 
 Arduino Library for ESP8266 to communicate with Viessmann boilers using a (DIY) serial optolink.
