@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Moved to Rocky Linux'
-tags: Rocky Linux
+tags: ["Rocky Linux"]
 featured_image_thumbnail: assets/images/posts/rocky/morskieoko_thumbnail.jpg
 featured_image: assets/images/posts/rocky/morskieoko.jpg
 featured: true

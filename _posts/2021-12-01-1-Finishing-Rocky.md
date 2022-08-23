@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Finishing Rocky setup'
-tags: Rocky Linux
+tags: ["Rocky Linux"]
 featured_image_thumbnail: assets/images/posts/rocky/hercules_thumbnail.jpg
 featured_image: assets/images/posts/rocky/hercules.jpg
 featured: false
