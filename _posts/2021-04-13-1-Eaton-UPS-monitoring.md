@@ -1,8 +1,7 @@
 ---
 layout: post
 title: 'Eaton UPS monitoring'
-#tags: [server, Debian, UPS]
-tags: server Debian UPS Eaton
+tags: ["Debian", "UPS", "networkupstools"]
 featured_image_thumbnail: assets/images/posts/ups/power_thumbnail.jpg
 featured_image: assets/images/posts/ups/power.jpg
 featured: false

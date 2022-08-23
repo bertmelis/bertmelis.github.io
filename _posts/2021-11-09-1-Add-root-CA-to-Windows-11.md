@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Self signed certificates in Windows 11'
-tags: self-signed certificates Windows
+tags: ["self-signed", "certificates", "Windows"]
 featured_image_thumbnail: assets/images/posts/certswin/lock_thumbnail.jpg
 featured_image: assets/images/posts/certswin/lock.jpg
 featured: false

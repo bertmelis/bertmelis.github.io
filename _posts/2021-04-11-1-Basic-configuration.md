@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Basic configuration of my home server'
-tags: server Debian
+tags: ["Debian"]
 featured_image_thumbnail: assets/images/posts/basic/debian_thumbnail.jpg
 featured_image: assets/images/posts/basic/debian.jpg
 featured: false

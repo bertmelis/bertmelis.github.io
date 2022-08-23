@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Installing the home server'
-tags: server Debian
+tags: ["Debian"]
 featured_image_thumbnail: assets/images/posts/server/back_thumbnail.jpg
 featured_image: assets/images/posts/server/back.jpg
 featured: false

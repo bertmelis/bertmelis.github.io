@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Unattended upgrades on Debian 10'
-tags: server Debian
+tags: ["Debian"]
 featured_image_thumbnail: assets/images/posts/unattended/coffee_thumbnail.jpg
 featured_image: assets/images/posts/unattended/coffee.jpg
 featured: false

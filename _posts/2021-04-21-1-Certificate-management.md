@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Certificate management'
-tags: OpenSSL self-signed certificates server
+tags: ["OpenSSL", "self-signed", "certificates"]
 featured_image_thumbnail: assets/images/posts/certman/lock_thumbnail.jpg
 featured_image: assets/images/posts/certman/lock.jpg
 featured: false
