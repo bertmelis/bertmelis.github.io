@@ -132,7 +132,7 @@ Step one done!
 
 ### Permissions
 
-To avoid issues with filesystem permissions inside and outside the container I opted to just give rw access to all on both the `/dev/dri/card0` and `/dev/dri/renderD128`. My iser had group access to both paths but the groups inside and outside the container are not the same and filesystem permissions fail. By granting everyone read and write access, this issue is out of the way.
+To avoid issues with filesystem permissions inside and outside the container I opted to just give rw access to all on both the `/dev/dri/card0` and `/dev/dri/renderD128`. My user had group access to both paths but the groups inside and outside the container are not the same and filesystem permissions fail. By granting everyone read and write access, this issue is out of the way.
 
 This is how it looks like on my side:
 
@@ -142,7 +142,7 @@ total 0
 drwxr-xr-x.  3 root root        100 Dec 10 09:20 .
 drwxr-xr-x. 21 root root       3520 Dec 10 09:20 ..
 drwxr-xr-x.  2 root root         80 Dec 10 09:20 by-path
-crw-rw----.  1 root video  226,   0 Dec 10 09:20 card0
+crw-rw-rw-.  1 root video  226,   0 Dec 10 09:20 card0
 crw-rw-rw-.  1 root render 226, 128 Dec 10 09:20 renderD128
 ```
 
