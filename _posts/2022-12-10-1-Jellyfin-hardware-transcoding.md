@@ -154,7 +154,7 @@ Also this time: magic! Transcoding works!
 And now we need to enable SELinux again.
 
 ```
-$ sudo setsebool container_use_devices=true
+$ sudo setsebool -P container_use_devices=true
 ```
 
 and
