@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Hardware transcoding for Jellyfin'
-tags: ["Jellyfin, "Podman", "SELinux"]
+tags: ["Jellyfin", "Podman", "SELinux"]
 featured_image_thumbnail: assets/images/posts/transcode/chip_thumbnail.jpg
 featured_image: assets/images/posts/transcode/chip.jpg
 featured: false
