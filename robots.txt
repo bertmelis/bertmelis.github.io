@@ -1,2 +1,4 @@
-User-agent: *
-Disallow: /assets/
+User-Agent: *
+Disallow: 
+
+Sitemap: https://www.emelis.net/sitemap.xml
