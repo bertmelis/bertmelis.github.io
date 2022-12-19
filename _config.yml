@@ -5,7 +5,7 @@ meta_description: 'A personal blog about IoT and related stuff.'
 logo: 'assets/images/signature_logo.png'
 favicon: 'assets/images/favicon.ico'
 baseurl: / # for examle: / or 'subdir/'
-production_url: https://bert.emelis.net/
+production_url: https://www.emelis.net/
 home_image: warsaw.jpg
 about_image: bialowieza.jpg
 ga_analytics: G-BYL2MXTH4E
