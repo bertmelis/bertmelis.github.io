@@ -6,7 +6,7 @@
     {% if site.plugins_dir contains 'jekyll-seo-tag' %}
         {% include head-seo.html %}
     {% else %}
-    <script data-ad-client="ca-pub-8992636785346180" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    {% include ads.html %}
     <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.name | escape }}{% endif %}</title>
     <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
     <link rel="canonical" href="{{ page.url | replace:'index.html', '' | absolute_url }}">
