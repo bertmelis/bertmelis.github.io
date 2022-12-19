@@ -8,7 +8,7 @@ baseurl: / # for examle: / or 'subdir/'
 production_url: https://www.emelis.net/
 home_image: warsaw.jpg
 about_image: bialowieza.jpg
-ga_analytics: G-BYL2MXTH4E
+#ga_analytics: G-BYL2MXTH4E
 excerpt_separator: <!--more-->
 
 author:
