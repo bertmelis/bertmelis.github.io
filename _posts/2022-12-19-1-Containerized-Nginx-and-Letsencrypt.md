@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Containerized Nginx reverse-proxy and Let's Encrypt certificates"
-tags: ["Nginx", "Let'&quot's Encrypt", "HTTP3", "Podman"]
+tags: ["Nginx", "Let's Encrypt", "HTTP3", "Podman"]
 featured_image_thumbnail: assets/images/posts/letsencrypt/switch_thumbnail.jpg
 featured_image: assets/images/posts/letsencrypt/switch.jpg
 featured: false
