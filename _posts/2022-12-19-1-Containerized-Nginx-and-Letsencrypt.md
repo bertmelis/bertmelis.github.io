@@ -82,7 +82,8 @@ The Nginx log files are already created. I noticed that Nginx sometimes has prob
 
 `~/nginx/container-compose.yml`:
 
-```version: "3.9"
+```
+version: "3.9"
 services:
   nginx-http3:
     build: ./
@@ -376,4 +377,3 @@ At the time of writing, this setup has an A+ rating at [Qualys SSL Labs](https:/
 ---
 
 Switch Photo by <a href="https://unsplash.com/@thomasjsn?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Thomas Jensen</a> on <a href="https://unsplash.com/s/photos/network?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-  
