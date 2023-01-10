@@ -55,7 +55,7 @@ Browse to your Jellyfin instance and add some libraries. Test and play around. I
 
 ## Enable hardware transcoding
 
-As soon as I [enabled hardware transcoding](https://jellyfin.org/docs/general/administration/hardware-acceleration), my (old) telefision refused to play the 4k movies I added. "This file is not supported" it said.
+As soon as I [enabled hardware transcoding](https://jellyfin.org/docs/general/administration/hardware-acceleration), my (old) telefision refused to play the 4k movies. "This file is not supported" it said.
 
 I had set the hardware acceleration to "Intel Quicksync (QSV)". After all, Intel itself says [on their website](https://www.intel.com/content/www/us/en/products/sku/128989/intel-celeron-j4105-processor-4m-cache-up-to-2-50-ghz/specifications.html) that the processor supports it.
 
@@ -65,7 +65,7 @@ I clearly need some extra configuration to do. There are some references in Jell
 
 ### Enable driver
 
-Most important step is to verify if the driver is enabled the kernel options are set:
+Most important step is to enable the driver in the kernel by setting the kernel options:
 
 ```
 $ sudo modinfo i915 | egrep -i "guc|huc|dmc"
@@ -96,7 +96,7 @@ options i915 enable_guc=2
 Then update GRUB (mind that I'm on Rocky Linux, your command might need to be adapted):
 
 ```
-$ sudi grub2-mkconfig -o /boot/efi/EFI/rocky/grub.cfg
+$ sudo grub2-mkconfig -o /boot/efi/EFI/rocky/grub.cfg
 ```
 
 Rebuild initramfs:
