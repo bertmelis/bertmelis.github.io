@@ -8,13 +8,13 @@ featured: true
 hidden: false
 ---
 
-I've always been a big fan of Debian's ultra stability. But stability came with Debian's number one downside: old packages. I took a leap of faith and switched to Rocky Linux.
+I've always been a big fan of Debian's ultra-stability. But stability came with Debian's number one downside: old packages. I took a leap of faith and switched to Rocky Linux.
 
 <!--more-->
 
 ### Step 1: Backup
 
-Although my data is on a separate drive, I backed up everything. Not only data (documents, music, pictures...) but also all my settings (Containerfiles and volumes most noteably).
+Although my data is on a separate drive, I backed up everything. Not only data (documents, music, pictures...) but also all my settings (Containerfiles and volumes most notably).
 
 ### Step 2: Installation
 
@@ -23,24 +23,24 @@ Rocky Linux has plenty of documentation and this obviously included the installa
 In short:
 
 - [Download](https://rockylinux.org/download/) the appropriate image. I chose the minimal version
-- Flash to an USB drive (I use BalenaEtcher for this)
+- Flash to a USB drive (I use BalenaEtcher for this)
 - Reboot the server and adjust the boot settings in BIOS to boot from the USB drive
-- Reboot again and follow the on screen instructions.
+- Reboot again and follow the on-screen instructions.
 
 Things I did during installation:
-- Enable network. My server gets it's IP via DHCP but with a static lease it always get's the same address.
-- Adjust the timezone, and enable network time. Mind that you first have to enable network before enabling network time.
+- Enable network. My server gets its IP via DHCP but with a static lease it always gets the same address.
+- Adjust the timezone, and enable network time. Mind that you first have to enable *network* before enabling *network time*.
 - Enable "Security Policy". This enables SELinux.
 - Software Selection: set it to "Minimal Install". I'm freaky about this. If you're more relaxed you could opt for "Server".
 - Keep the root account disabled
-- Create a non-root account but make it administrator
-- Select the "Installation Destination". On My system, I've got two disks: one for the OS and related and one for data. Obviously I select the OS drive and opt for automatic storage configuration. I don't want to preserve anything so I "reclaim" all space on the drive. This deletes everything that is currently on the drive.
+- Create a non-root account but make it an administrator
+- Select the "Installation Destination". On My system, I've got two disks: one for the OS and related and one for data. Obviously, I select the OS drive and opt for automatic storage configuration. I don't want to preserve anything so I "reclaim" all space on the drive. This deletes everything that is currently on the drive.
 
 Click "Begin Installation" and done.
 
 ### Step 3: Finish setup
 
-After rebooting, your trusted but boring login screen will be served. But this is not Debian anymore. We can now have an almost-built-in management interface.
+After rebooting, your trusted but boring login screen will be served. But this is not Debian anymore. We can now have a built-in management interface.
 
 Install by
 
@@ -61,10 +61,10 @@ Et voilà, you're ready to go.
 
 ### Attention!
 
-Rocky Linux comes with SELinux. It can by really annoying but that's a good thing.
-If you would like to enable TLS on your cockpit gui, you might experience the joys of dealing with SELinux.
-Imagine you upload your certificate to your home directory and move it into place from there. Then your file doesn't have the right label and cockpit won't be able to read it.
-Cockpit will only give you an error saying it failed to start. Whether this is SELinux related or not, you can easily check by running
+Rocky Linux comes with SELinux. It can be really annoying but that's a good thing.
+If you would like to enable TLS on your cockpit GUI, you might experience the joys of dealing with SELinux.
+Imagine you upload your certificate to your home directory and move it into place from there. Then your file doesn't have the right label and Cockpit won't be able to read it.
+Cockpit will only give you an error saying it failed to start. Whether this is SELinux-related or not, you can easily check by running
 
 ```
 $ sudo setenforce 0
@@ -79,7 +79,7 @@ Relabeled /etc/cockpit/ws-certs.d/your-cert.cert from unconfined_u:object_r:user
 Relabeled /etc/cockpit/ws-certs.d/your-cert.key from unconfined_u:object_r:user_home_t:s0 to unconfirmed_u:object_r:etc_t:s0
 ```
 
-You can now enable SELinux again using cockpit or on the command line (`sudo setenforce 1`).
+You can now enable SELinux again using Cockpit or on the command line (`sudo setenforce 1`).
 
 ---
 

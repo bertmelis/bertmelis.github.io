@@ -8,17 +8,17 @@ featured: false
 hidden: false
 ---
 
-I chose Debian as operating system. It is secure and lean. But this also means a couple of extra steps to make it usable.
+I chose Debian as the operating system. It is secure and lean. But this also means a couple of extra steps to make it usable.
 
 <!--more-->
 
 ## Installation
 
-For convenience I used a keyboard and monitor for [the installation](https://www.debian.org/releases/stable/installmanual) of Debian 10.
+For convenience, I used a keyboard and monitor for [the installation](https://www.debian.org/releases/stable/installmanual) of Debian 10.
 
-I followed the on screen instruction but a few things are worth mentioning:
+I followed the on-screen instructions but a few things are worth mentioning:
 
-- The `root` user didn't get a password. Hence it cannot login but it also means the regular user I created was given `sudo` rights.
+- The `root` user didn't get a password. Hence it cannot log in but it also means the regular user I created was given `sudo` rights.
 - I unchecked all the optional packages so the system was minimal.
 
 Before going completely headless, I installed some basic utilities and an SSH server:
@@ -27,7 +27,7 @@ Before going completely headless, I installed some basic utilities and an SSH se
 $ sudo apt install openssh-server wget gnupg ca-certificates
 ```
 
-The ssh-server is enabled and started by default. We can now reach the server remotely. All subsequent commands are done on my laptop running Ubuntu. for windows I strongly recommend to use [WSL](https://docs.microsoft.com/en-us/windows/wsl/).
+The ssh-server is enabled and started by default. We can now reach the server remotely. All subsequent commands are done on my laptop running Ubuntu. For Windows, I strongly recommend using [WSL](https://docs.microsoft.com/en-us/windows/wsl/).
 
 ## Connect remotely via SSH
 
@@ -44,7 +44,7 @@ $ ssh-keygen -t rsa -b 4096 -C "name@domain.com"
 ```
 
 - When asked for the location to save the key press \<enter\> to save in the default location.
-- You can set a passphrase but most people don't. Just press \<enter\> for an emtpy passphrase.
+- You can set a passphrase but most people don't. Just press \<enter\> for an empty passphrase.
 
 
 The key will be stored in `/home/username/.ssh/`. Check with the same command as above:
@@ -65,7 +65,7 @@ You can now log in without using your password to the server:
 $ ssh remote_username@server_ip_address
 ```
 
-You might want to disable password login now.
+You might want to disable password-login now.
 
 ```
 $ sudo nano /etc/dssh/sshd_config

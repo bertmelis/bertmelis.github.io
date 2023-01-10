@@ -8,9 +8,9 @@ featured: false
 hidden: false
 ---
 
-When exposing services running on your home server to the Internet, you obviously only allow encrypted connections. I'm exposing Home Assistant, Jellyfin and some other things via a containerized Nginx with HTTP3 and use Let's Encrypt to supply certificates.
+When exposing services running on your home server to the Internet, you obviously only allow encrypted connections. I'm exposing Home Assistant, Jellyfin and some other things via a containerized Nginx with HTTP3 and I use Let's Encrypt to supply certificates.
 
-With this setup you have an A+ rating at Qualys.
+With this setup, you have an A+ rating at Qualys.
 
 <!--more-->
 
@@ -26,17 +26,17 @@ When you follow this guide you will have:
 - Automatic renewal of certificates using a systemd timer
 
 Prerequisites:
-- A container engine like Podman or Docker. I'm using Podman on a RHEL system (with SELinux enforced)
+- A container engine like Podman or Docker. I'm using Podman on an RHEL system (with SELinux enforced)
 - Podman-compose or docker-compose
 
-Port forwarding and firewall management are out of scope of this guide. For HTTP3 you will need to open port 80/TCP (only to redirect to port 443) and port 443 (UDP and TCP).
+Port forwarding and firewall management are out of the scope of this guide. For HTTP3 you will need to open port 80/TCP (only to redirect to port 443) and port 443 (UDP and TCP).
 
 ## HTTP3 and Nginx
 
 [HTTP3](https://en.wikipedia.org/wiki/HTTP/3) may be officially released as a standard, in Nginx it has not yet made it into the stable release.
 Nginx does, however, have the code ready for those brave enough to try. And we sure are brave, aren't we?
 
-F5, the company behind Nginx even provides a ready-to-use Dockerfile so you can build Nginx yourself. This also comes handy of you want to add your own modules.
+F5, the company behind Nginx even provides a ready-to-use Dockerfile so you can build Nginx yourself. This also comes in handy if you want to add your own modules.
 
 The source of the `Containerfile` is found on the Nginx website: [https://www.nginx.com/blog/our-roadmap-quic-http-3-support-nginx/](https://www.nginx.com/blog/our-roadmap-quic-http-3-support-nginx/)
 
@@ -48,7 +48,7 @@ $ podman build -t nginx-http3 .
 
 ## Directory structure and files
 
-Because I'm going to run a Nginx and Certbot container separately, I have to take care of the directory structure. I also want the Nginx logs to persist, outside of the container, so I can run log-parsing services like fail2ban.
+Because I'm going to run an Nginx and Certbot container separately, I have to take care of the directory structure. I also want the Nginx logs to persist, outside of the container, so I can run log-parsing services like fail2ban.
 
 ```
 $ home - nginx
@@ -109,7 +109,7 @@ services:
 
 A few words of explanation here:
 
-- The Nginx container uses host networking mode. This is to have the real client's IP address available for logging purposes. There is [a new network driver](https://github.com/containers/podman/pull/16141) coming to Podman but it hasn't made it to the standard RHEL repo's yet.
+- The Nginx container uses host networking mode. This is to have the real client's IP address available for logging purposes. There is [a new network driver](https://github.com/containers/podman/pull/16141) coming to Podman but it hasn't made it to the standard RHEL repos yet.
 - Because we use the host network, you cannot connect to a second Podman network. Backend services will have to expose their port on the post to be reachable. Note that their port should still be firewalled.
 - Volumes are mapped as we created them in our home directory. They all are read-only except the log directory. Don't forget the SELinux flags!
 
@@ -278,11 +278,11 @@ server {
 }
 ```
 
-The per service configuration files will be different depending the the actual backend service. This example is taken from my Home Assistant setup. Obviously, the domain name has to be changed but also this line might need a change:
+The per-service configuration files will be different depending on the actual backend service. This example is taken from my Home Assistant setup. Obviously, the domain name has to be changed but also this line might need a change:
 
 `set $backend_service backend_service;`
 
-It puts the name of the host where the service is reachable into a veriable. Since Nginx is running in the host network stack, you might want to point it to `localhost` or `127.0.0.1`.
+It puts the name of the host where the service is reachable into a variable. Since Nginx is running in the host network stack, you might want to point it to `localhost` or `127.0.0.1`.
 
 Please consult the documentation of the service you want to make available.
 
@@ -290,7 +290,7 @@ Please consult the documentation of the service you want to make available.
 
 If you start the Nginx container now, it will fail. This is because the certificates are not yet available and the server will throw an error. To overcome this, you can run Certbot in standalone mode.
 
-Make sure port 80 is not firewalled on your server. Also check that your router is properly forwarding the port.
+Make sure port 80 is not firewalled on your server. Also, check that your router is properly forwarding the port.
 
 Try out with
 
@@ -304,7 +304,7 @@ And do it for real with
 podman run -it --rm -p 80:80 -v ~/nginx/data/letsencrypt:/etc/letsencrypt:z -v ~/nginx/log:/var/log:z certbot/certbot certonly --standalone --key-type ecdsa --rsa-key-size 4096 -d sub.domain.tld
 ```
 
-Certbot will ask you a few questions such as your e-mailaddress and if you could agree with their terms. I assume you do. This info will be stored so you can automate the command when renewing. You can provide multiple domains by adding extra `-d domain` arguments.
+Certbot will ask you a few questions such as your e-mail address and if you could agree with their terms. I assume you do. This info will be stored so you can automate the command when renewing. You can provide multiple domains by adding extra `-d domain` arguments.
 
 Now that you have the certificates, you can start Nginx:
 
@@ -331,7 +331,7 @@ Go to ~/.config/systemd/user
 
 Certbot is not integrated into the Nginx container so we must run it separately. This is quite straightforward with Systemd timers.
 
-We're still int the `~/.config/systemd/user` directory and create two files.
+We're still in the `~/.config/systemd/user` directory and create two files.
 
 `renew-certificates.service`
 
@@ -349,7 +349,7 @@ ExecStart=podman exec nginx nginx -s reload
 WantedBy=default.target
 ```
 
-there are two commands in this unit file. The first command checks for renewal. The second command reloads Nginx inside its container so new certificates are picked up. Mind that changes in configuration files are also picked up.
+There are two commands in this unit file. The first command checks for renewal. The second command reloads Nginx inside its container so new certificates are picked up. Mind that changes in configuration files are also picked up. If you made changes that contain errors, neither the changes nor new certificates are activated.
 
 `renew-certificates.timer`
 
@@ -371,7 +371,7 @@ $ systemctl --user daemon-reload
 $ systemctl --user enable renew-certificates.timer
 ```
 
-Done! Now you have a running Nginx reverse-proxy with Let's Encrypt certificates and automatic renewal.
+Done! Now you have a running Nginx reverse proxy with Let's Encrypt certificates and automatic renewal.
 At the time of writing, this setup has an A+ rating at [Qualys SSL Labs](https://www.ssllabs.com/ssltest/).
 
 ---

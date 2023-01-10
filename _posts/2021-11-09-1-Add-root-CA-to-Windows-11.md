@@ -14,7 +14,7 @@ Windows 11 will trust you.
 
 <!--more-->
 
-After following [this guide](https://bert.emelis.net/posts/1-Certificate-management) you have your own, self-signed certificate. It's the `~/keys/ca/root-ca.crt` file. There are a few steps to follow but none of them involve a command line.
+After following [this guide](https://bert.emelis.net/posts/1-Certificate-management) you have your own, self-signed certificate. It's the `~/keys/ca/root-ca.crt` file. There are a few steps to follow but none of them involves a command line.
 
 I created this guide on Windows 11, Windows 10 should also be OK.
 
@@ -51,7 +51,7 @@ You can now browse through the already available certificates. In the middle pan
 
 ### Add our Root CA
 
-With the list of certificates in the middle pane, right click on "Certificates" in the left pane, go the "All Tasks" and "Import". Alternatively, you can select "Action" from the top menu bar, go to "All Tasks" and finally "Import". Follow the wizard.
+With the list of certificates in the middle pane, right-click on "Certificates" in the left pane, go the "All Tasks" and "Import". Alternatively, you can select "Action" from the top menu bar, go to "All Tasks" and finally "Import". Follow the wizard.
 
 ![Import wizard 1](/assets/images/posts/certswin/08-import1.png)
 

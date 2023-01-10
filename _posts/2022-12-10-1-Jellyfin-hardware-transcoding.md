@@ -44,7 +44,7 @@ $ podman run \
 It's a long command but you can easily hide this in a container-compose.yml file. Or create a systemd file and run it using systemd. The command is taken from the [documentation](https://jellyfin.org/docs/general/administration/installing/#podman). Changes are:
 
 - use host networking instead of just port mapping. This is to enable DLNA discovery.
-- use plain volume mount for media
+- use a plain volume mount for media
 - add the devices to the container.
 
 This last change is important of course. Without the hardware devices to transcode, you can't use them obviously.
@@ -55,7 +55,7 @@ Browse to your Jellyfin instance and add some libraries. Test and play around. I
 
 ## Enable hardware transcoding
 
-As soon as I [enabled hardware transcoding](https://jellyfin.org/docs/general/administration/hardware-acceleration), my (old) telefision refused to play the 4k movies. "This file is not supported" it said.
+As soon as I [enabled hardware transcoding](https://jellyfin.org/docs/general/administration/hardware-acceleration), my (old) television refused to play the 4k movies. "This file is not supported", it said.
 
 I had set the hardware acceleration to "Intel Quicksync (QSV)". After all, Intel itself says [on their website](https://www.intel.com/content/www/us/en/products/sku/128989/intel-celeron-j4105-processor-4m-cache-up-to-2-50-ghz/specifications.html) that the processor supports it.
 
@@ -65,7 +65,7 @@ I clearly need some extra configuration to do. There are some references in Jell
 
 ### Enable driver
 
-Most important step is to enable the driver in the kernel by setting the kernel options:
+The first step is to enable the driver in the kernel by setting the kernel options:
 
 ```
 $ sudo modinfo i915 | egrep -i "guc|huc|dmc"
@@ -128,13 +128,13 @@ $ dmesg | grep drm
 [    8.287996] i915 0000:00:02.0: [drm] Cannot find any crtc or sizes
 ```
 
-Step one done!
+Step one is done!
 
 ### Permissions
 
-To avoid issues with filesystem permissions inside and outside the container I opted to just give rw access to all on both the `/dev/dri/card0` and `/dev/dri/renderD128`. My user had group access to both paths but the groups inside and outside the container are not the same and filesystem permissions fail. By granting everyone read and write access, this issue is out of the way.
+To avoid issues with filesystem permissions inside and outside the container I opted to just give RW access to all on both the `/dev/dri/card0` and `/dev/dri/renderD128`. My user had group access to both paths but the groups inside and outside the container are not the same and filesystem permissions fail. By granting everyone read and write access, this issue is out of the way.
 
-This is how it looks like on my side:
+This is what it looks like on my side:
 
 ```
 $ ls -al /dev/dri
@@ -172,7 +172,7 @@ Don't forget to re-enable SELinux.
 
 ## Done!
 
-You can now enjoy hardware supported transcoding in Jellyfin on your J4105 machine.
+You can now enjoy hardware-supported transcoding in Jellyfin on your J4105 machine.
 
 ---
 

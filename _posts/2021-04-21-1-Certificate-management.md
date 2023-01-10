@@ -8,15 +8,15 @@ featured: false
 hidden: false
 ---
 
-OpenSSL and certificate management is a somewhat black box to me. So I thought I'd better write down how I managed to create my certificates. I followed this tutorial: [https://pki-tutorial.readthedocs.io/en/latest/index.html](https://pki-tutorial.readthedocs.io/en/latest/index.html).
+OpenSSL and certificate management are a black box to me. So I thought I'd better write down how I managed to create my certificates. I followed this tutorial: [https://pki-tutorial.readthedocs.io/en/latest/index.html](https://pki-tutorial.readthedocs.io/en/latest/index.html).
 
 <!--more-->
 
-There are a lot of OpenSSL tutorials online to create you self-signed certificates. And in fact, when you have a public facing service you'd better stick to trusted platforms like [Let's Encrypt](https://www.letsencrypt.org). For our internal services I'm trustworthy enough to have my own certificate authority. I want to create certificates for my OpenVPN server, my Mosquitto broker and the Cockpit control panel.
+There are a lot of OpenSSL tutorials online to create your self-signed certificates. And in fact, when you have a public-facing service you'd better stick to trusted platforms like [Let's Encrypt](https://www.letsencrypt.org). For our internal services, I'm trustworthy enough to have my own certificate authority. I want to create certificates for my OpenVPN server, my Mosquitto broker and the Cockpit control panel.
 
-DISCLAIMER: The following steps are from [https://pki-tutorial.readthedocs.io/en/latest/index.html](https://pki-tutorial.readthedocs.io/en/latest/index.html). They are more elaborate than most other guides but the steps are clear, understandable and you learn how the chain of trust works.
+DISCLAIMER: The following steps are from [https://pki-tutorial.readthedocs.io/en/latest/index.html](https://pki-tutorial.readthedocs.io/en/latest/index.html). They are more elaborate than most other guides but the steps are clear and understandable and you learn how the chain of trust works.
 
-ATTENTION: Private keys are to be kept strictly private so you don't want the key-files to be exposed to the Internet. It is best to setup the key infrastructure on a computer that is not connected to the Internet to prevent any unauthorized access. Alternatively, instead of generating the PKI in your home directory, you can put all the files on removeable media like an USB stick and store it somewhere safe.
+ATTENTION: Private keys are to be kept strictly private so you don't want the key files to be exposed to the Internet. It is best to set up the key infrastructure on a computer that is not connected to the Internet to prevent any unauthorized access. Alternatively, instead of generating the PKI in your home directory, you can put all the files on removable media like a USB stick and store it somewhere safe.
 
 ## Preparation
 
@@ -380,7 +380,7 @@ $ openssl ca -gencrl \
 
 The TLS-server CA is an intermediate certificate that will be used to sign all TLS certificates. If that doesn't make sense think of this: Would the president sign all the passports of his citizens by himself? Probably not. The president does however grant certain people the right to sign on his behalf. That's what we're also doing by creating a TLS server CA.
 
-First create the directories to store the files.
+First, create the directories to store the files.
 
 ```
 $ mkdir -p ca/tls-ca/private ca/tls-ca/db
@@ -440,7 +440,7 @@ $ cat ca/tls-ca.crt ca/root-ca.crt > \
     ca/tls-ca-chain.pem
 ```
 
-If you look at the contents of the file, it is actually nothing more then the root certificate and the tls-server certificate pasted after each other.
+If you look at the contents of the file, it is nothing more than the root certificate and the tls-server certificate pasted after each other.
 
 ## Issuing certificates
 
@@ -448,9 +448,9 @@ Our infrastructure is ready to create certificates that will be deployed to our 
 
 Let's create a certificate for our Cockpit control panel. The control panel is reachable on "cpanel.acme.com"[^1].
 
-[^1]: The control panel is only reachable from the LAN. It's domain name is defined in the router's dnsmasq service.
+[^1]: The control panel is only reachable from the LAN. Its domain name is defined in the router's dnsmasq service.
 
-Our infrastructure is completely ready now. When we want to have a certificate for one of our services we create a request and the authority signs it. Think of it like these real world analogies:
+Our infrastructure is completely ready now. When we want to have a certificate for one of our services we create a request and the authority signs it. Think of it like these real-world analogies:
 
 - bank notes backed up by a central bank
 - passports signed by a country's representative
@@ -482,7 +482,7 @@ If this is your first certificate, a copy will be stored under `ca/tls-ca/01.pem
 
 Which files do you need in your actual service?
 
-- tls-ca.crt: the public root certificate as basis of trust
+- tls-ca.crt: the public root certificate as the basis of trust
 - cpanel.acme.com.crt: the public server certificate which has the FQDN incorporated
 - cpanel.acme.com.key: the private key to be able to decrypt
 
@@ -511,7 +511,7 @@ $ sudo chmod 640 /etc/cockpit/ws-certs.d/cpanel.acme.com.cert
 
 ## Revoking certificates
 
-Should you want to revoke a certificate (the private key has been compromised) before it's expiration date, you can add it to the CRL (certificate revoke list). You have to know the id-number of the certificate though. If you didn't remember, look into the signing-db: `~/keys/ca/signing-ca/db/signing-ca.db`.
+Should you want to revoke a certificate (the private key has been compromised) before its expiration date, you can add it to the CRL (certificate revoke list). You have to know the id-number of the certificate though. If you didn't remember, look into the signing-db: `~/keys/ca/signing-ca/db/signing-ca.db`.
 
 ### Revoke a certificate
 
@@ -534,16 +534,16 @@ openssl ca -gencrl \
 
 ## Adding your own certificates your system
 
-You've set up your own public key infrastructure and certificate authority. However, your browser (and ander programs) doesn't know about this.
+You've set up your own public key infrastructure and certificate authority. However, your browser (and other programs) doesn't know about this.
 
-So the root certificate trusted, copy it to `/usr/local/share/ca-certificates/`.
+To have your computer trust the root certificate, copy it to `/usr/local/share/ca-certificates/`.
 
 ```
 $ sudo cp ~/keys/ca/root-ca.crt /usr/local/share/ca-certificates/
 $ sudo update-ca-certificates
 ```
 
-If you use Firefox like I do, you will notice that your cockpit-login page still shows a warning. Firefox does not take your system's certificates as a trusted store. To solve this, head over to [this post](/posts/2-Firefox-and-self-signed-certificates).
+If you use Firefox as I do, you will notice that your cockpit login page still shows a warning. Firefox does not take your system's certificates as a trusted store. To solve this, head over to [this post](/posts/2-Firefox-and-self-signed-certificates).
 
 You'll then have this screen:
 

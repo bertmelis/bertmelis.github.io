@@ -8,7 +8,7 @@ featured: false
 hidden: false
 ---
 
-I use [msmtp](https://marlam.de/msmtp/) as a simple smtp relay to forward system messages to my Gmail address. After upgrading Rocky Linux to version 9, I noticed msmtp isn't (yet?) available in the repos. So I built it myself.
+I use [msmtp](https://marlam.de/msmtp/) as a simple SMTP relay to forward system messages to my Gmail address. After upgrading Rocky Linux to version 9, I noticed msmtp isn't (yet?) available in the repositories. So I built it myself.
 
 <!--more-->
 
@@ -16,7 +16,7 @@ I use [msmtp](https://marlam.de/msmtp/) as a simple smtp relay to forward system
 
 I surely could download the source code and install all the dependencies and tools to build and install. However, I don't want to clutter my base system with all these one-time tools. So I decided to build it in a container. I'm way out of my comfort zone here.
 
-After some trial and error and browsing for solutions I ended up with this result.
+After some trial and error and browsing for solutions, I ended up with this result.
 
 ### Preparation
 
@@ -59,7 +59,7 @@ COPY build/msmtp.spec /rpmbuild/msmtp.spec
 ADD src /rpmbuild/rpmbuild/SOURCES/
 ```
 
-Breakdown of the Containerfile: We start from the same base system as we're going to run the result on. Next, we enable extra repos to be able to find msmtp's dependencies and the developer tools. (Red Hat call this CRB or CodeReady Linux Builder repository.) We're then able to install everything we need to build the rpm.
+Breakdown of the Containerfile: We start from the same base system as we're going to run the result on. Next, we enable extra repos to be able to find msmtp's dependencies and the developer tools. (Red Hat calls this CRB or CodeReady Linux Builder repository.) We're then able to install everything we need to build the rpm.
 
 All that's left is to prepare the directory structure and copy/add all the files.
 
@@ -203,11 +203,11 @@ fi
 - Ver. 1.8.22
 ```
 
-This file I copied from Fedora's source and happened to work on RHEL9 which isn't a surprise of course.
+I copied this file from Fedora's source and happened to work on RHEL9 which isn't a surprise of course.
 
 ### Get the source
 
-One last thing before building is getting the actual source code. So download the `.tar.xz` file [here](https://marlam.de/msmtp/download/) and put it in the `src` directory. You don't need to untar.
+One last thing before building it is getting the actual source code. So download the `.tar.xz` file [here](https://marlam.de/msmtp/download/) and put it in the `src` directory. You don't need to untar.
 
 ### Build!
 
@@ -225,8 +225,8 @@ Install msmtp by a simple:
 $ sudo dnf install artifacts/msmtp-1.8.22-1.el9.x86_64.rpm
 ```
 
-Done! Configure msmtp the same way as on other Linux systems like [I did here](https://bert.emelis.net/posts/1-MSMTP).
+Done! Configure msmtp the same way as on other Linux systems as [I did here](https://bert.emelis.net/posts/1-MSMTP).
 
-Instead of copy pasting, you can download the whole set of files from my Github: [build-msmtp](https://github.com/bertmelis/build-msmtp).
+Instead of copy-pasting, you can download the whole set of files from my Github: [build-msmtp](https://github.com/bertmelis/build-msmtp).
 
 ---

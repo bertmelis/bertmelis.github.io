@@ -22,7 +22,7 @@ to enable automatic updates, a package called `unattended-upgrades` has to be en
 $ sudo apt install --no-install-recommends unattended-upgrades apt-listchanges
 ```
 
-On my system this installs: `apt-listchanges python-apt-common python3-apt python3-debconf python3-distro-info unattended-upgrades`.
+On my system, this installs `apt-listchanges python-apt-common python3-apt python3-debconf python3-distro-info unattended-upgrades`.
 
 ## Configuration
 
@@ -34,7 +34,7 @@ Edit the file (and create if nonexistent):
 $ sudo nano /etc/apt/apt.conf.d/02periodic
 ```
 
-Copy the following content into the file and adjust to your liking:
+Copy the following content into the file and adjust it to your liking:
 
 ```
 // Control parameters for cron jobs by /etc/cron.daily/apt-compat //

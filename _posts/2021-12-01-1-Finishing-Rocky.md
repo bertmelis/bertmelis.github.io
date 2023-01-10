@@ -14,19 +14,19 @@ After the basic installation of Rocky Linux, it's time to finish the setup. We'r
 
 ### Check
 
-when you finished the [basic setup](/posts/1-Rocky-Linux), you can log in via the terminal or via the web gui (Cockpit). Check basic settings like *hostname*, *time and timezone* and so on.
+when you finished the [basic setup](/posts/1-Rocky-Linux), you can log in via the terminal or the web GUI (Cockpit). Check basic settings like *hostname*, *time and timezone* and so on.
 
-Cockpit shosw some statistics about your system. If you want to persist them you'll have to install **pcp**. this can be done through the GUI. Alternatively, install **cockpit-pcp** using the command line:
+Cockpit shows some statistics about your system. If you want to persist them you'll have to install **pcp**. this can be done through the GUI. Alternatively, install **cockpit-pcp** using the command line:
 
 ```
 $ sudo yum install cockpit-pcp
 ```
 
-On the "Software updates" tab in the GUI, I also enabled automatic software updates (for security related updates) and kernel patches. As the screen tells you, this means the server will reboot from time to time. Keep this in mind when you manually start programs you rely on. On the same page, you can do a manual update.
+On the "Software updates" tab in the GUI, I also enabled automatic software updates (for security-related updates) and kernel patches. As the screen tells you, this means the server will reboot from time to time. Keep this in mind when you manually start programs you rely on. On the same page, you can do a manual update.
 
 ### Add disks
 
-Before adding my data disk (in the OS, that is), I added the relevant cockpit addon and smartmontools. The disk supports SMART.
+Before adding my data disk (in the OS, that is), I added the relevant Cockpit addon and *smartmontools*. The disk supports SMART.
 
 ```
 $ sudo yum smartmontools cockpit-storaged
@@ -38,7 +38,7 @@ Create a mount point:
 $ sudo mkdir /mnt/data
 ```
 
-Now add the disk. first find it's UUID.
+Now add the disk. First, find its UUID.
 
 ```
 $ sudo blkid
@@ -51,7 +51,7 @@ $ sudo blkid
 /dev/mapper/rl_server-home: UUID="43034b2e-0af3-49be-be5a-c4b7ed46b0aa" BLOCK_SIZE="512" TYPE="xfs"
 ```
 
-The top entry is the right one. It's the only with ext4. I know the drive is formatted like that. If you're unsure, manually mount and check. Add it to `fstab`.
+The top entry is the right one. It's the only one with ext4. I know the drive is formatted like that. If you're unsure, manually mount and check. Add it to `fstab`.
 
 ```
 $ sudo nano /etc/fstab
@@ -68,7 +68,7 @@ Every item is separated by a space. Some explanation:
 - **mount point**: where in the filesystem will the disk be attached
 - **filesystem type**:  etx4 or leave auto
 - **options**
-	- nofail: ignore errors at boot when disk is not there
+	- nofail: ignore errors at boot when the disk is not there
 	- noatime: don't save access time (files and dirs)
 	- noexec: don't allow executables on this drive
 	- errors=remount-ro: when errors are encountered, remount the drive read-only to avoid further damage
@@ -84,7 +84,7 @@ $ sudo systemctl enable smartd
 
 ### Podman
 
-On my Debian installation I ran Podman and a few virtual machines. It's my goal to move everything to [Podman](https://podman.io/). Podman is Redhats Docker. It runs daemonless and is capable of running rootless. These are advantages but my bring some difficulties, especially with SELinux. We'll see where it goes.
+On my Debian installation, I ran Podman and a few virtual machines. It's my goal to move everything to [Podman](https://podman.io/). Podman is Redhat's Docker. It runs daemonless and is capable of running rootless. These are advantages but might bring some difficulties, especially with SELinux. We'll see where it goes.
 
 At least installation is simple:
 
@@ -112,7 +112,7 @@ $ sudo sysctl --system
 
 ### On last thing
 
-while we're at it, we might want to enable the "extra packages for enterprise linux". Up to now we didn't need any extra packages but we might run into this in the future and who knows, cause some headscratching. It doesn't hurt to enable it:
+While we're at it, we might want to enable the "extra packages for enterprise linux". Up to now we didn't need any extra packages but we might run into this in the future and who knows, cause some head scratching. It doesn't hurt to enable it:
 
 ```
 $ sudo yum install epel-release

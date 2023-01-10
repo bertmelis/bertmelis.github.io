@@ -8,15 +8,15 @@ featured: false
 hidden: false
 ---
 
-Power outages are rare nowadays. But they are not nonexistent. I bought a second hand UPS and a new battery to keep my server up during an eventual short outage.
+Power outages are rare nowadays. But they are not nonexistent. I bought a second-hand UPS and a new battery to keep my server up during an eventual short outage.
 
 <!--more-->
 
-So I bought a second hand Eaton Ellipse ASR 750. It's a rather old device but it came with a new battery. And it has a USB connection so I plugged it into my server and started with [Network UPS tools](https://networkupstools.org/).
+So I bought a second-hand Eaton Ellipse ASR 750. It's a rather old device but it came with a new battery. And it has a USB connection so I plugged it into my server and started with [Network UPS tools](https://networkupstools.org/).
 
 ## Installation
 
-Network UPS Tools or NUT has been around for ages, so it made it's way into the standard Debian repo's.
+Network UPS Tools or NUT has been around for ages, so it made its way into the standard Debian repositories.
 
 ```
 $ sudo apt install nut
@@ -54,13 +54,13 @@ Bus 001 Device 002: ID 0463:ffff MGE UPS Systems UPS
 ```
 Bingo!
 
-- Vendor ID : 0463
-- Device ID : ffff
+- Vendor ID: 0463
+- Device ID: ffff
 
 
 ## Configuration
 
-We will now set up nut to check on the UPS.
+We will now set up *nut* to check on the UPS.
 
 In the file `/etc/nut/ups.conf` we add the following:
 
@@ -86,7 +86,7 @@ Network UPS Tools - UPS driver controller 2.7.4
 Can't open /etc/nut/ups.conf: Can't open /etc/nut/ups.conf: Permission denied
 ```
 
-My UPS only has one "consumer" which it my server. So NUT can perfectly be set to `standalone` mode.
+My UPS only has one "consumer", which is my server. So NUT can perfectly be set to `standalone` mode.
 
 In the file `/etc/nut/nut.conf` set:
 
@@ -128,7 +128,7 @@ MONITOR eaton@localhost 1 upsmonitor ups_password master
 
 ## Test
 
-You could simply pull the plug. But first make sure all services are running correctly!
+You could simply pull the plug. But first, make sure all services are running correctly!
 
 ```
 $ sudo systemctl start ups-driver
@@ -198,7 +198,7 @@ ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0463", ATTR{idProduct}=="ffff"
 
 ### The UPS is gone?
 
-Sometimes the UPS driver fails and loses connection. That would be disastrous. After all, the knowing how the UPS is doing is crucial for a gracious shutdown should the battery get low.
+Sometimes the UPS driver fails and loses connection. That would be disastrous. After all, knowing how the UPS is doing is crucial for a gracious shutdown should the battery get low.
 
 You can find out with this command:
 
@@ -224,7 +224,7 @@ Init SSL without certificate database
 device.type: ups
 ```
 
-Best to put this in a script and run regularly.
+Best to put this in a script and run it regularly.
 
 Create a file ~/checkups.sh
 
@@ -238,11 +238,11 @@ else
 fi
 ```
 
-The frequency to run this script depends on the size of the UPS and the power of your server. The power source of my server is rated 80W. The UPS is 750VA or 450W with a 12V/9Ah battery. The battery can deliver about 108VAh. On maximum load it should theoretically last about one hour. So a safe interval of checking every 10 minutes should be more than enough. There is one thing we have to take care of though. The default values in `upsmon.conf` make upsmon check the UPS every 5 seconds. When a UPS isn't answering to the polls it is marked "stale". When this condition lasts for more then `DEADTIME`, the UPS is marked "dead".
+The frequency to run this script depends on the size of the UPS and the power of your server. The power source of my server is rated 80W. The UPS is 750VA or 450W with a 12V/9Ah battery. The battery can deliver about 108VAh. On maximum load, it should theoretically last about one hour. So a safe interval of checking every 10 minutes should be more than enough. There is one thing we have to take care of though. The default value in `upsmon.conf` makes *upsmon* check the UPS every 5 seconds. When a UPS isn't answering to the polls, it is marked "stale". When this condition lasts for more than `DEADTIME`, the UPS is marked "dead".
 
 I chose a checking frequency of 60 seconds while on AC power and 10 seconds while on battery power.
 
-Since we only check the USB connection every 10 minutes but poll every minute, or 10 seconds depending on the power source, we should set `DEADTIME` and `NOCOMMWARNTIME` to 600 seconds. This will avoid spamming of the log when the USB connection to the UPS goes down.
+Since we only check the USB connection every 10 minutes but poll every minute, or 10 seconds depending on the power source, we should set `DEADTIME` and `NOCOMMWARNTIME` to 600 seconds. This will avoid spamming the log when the USB connection to the UPS goes down.
 
 In file `/etc/nut/upsmon.conf`:
 
@@ -281,7 +281,7 @@ $ sudo crontab -e
 
 ```
 
-I stop worrying about ungraceful shutdown because of power outages.
+I stop worrying about ungraceful shutdowns because of power outages.
 
 ## Live test
 

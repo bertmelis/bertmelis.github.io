@@ -12,35 +12,35 @@ Even if you have imported your self-signed root certificate to your Ubuntu syste
 
 <!--more-->
 
-You could just add an exception for your website to Firefox, but it still shows the little warning icon in the address bar to show something's fishy.
+You could just add an exception for your website to Firefox, but it still shows the little warning icon in the address bar to show something is fishy.
 
-Firefox uses it's own certificate store and doesn't care about the certificates the system trusts.
+Firefox uses its own certificate store and doesn't care about the certificates the system trusts.
 
-Luckily, [this answer on Ask Ubuntu](https://askubuntu.com/questions/244582/add-certificate-authorities-system-wide-on-firefox) has the path to the the answer. At the time of writing, the answer is not the accepted one, nor has it a high rating. But in my opinion it is the best one.
+Luckily, [this answer on Ask Ubuntu](https://askubuntu.com/questions/244582/add-certificate-authorities-system-wide-on-firefox) has the path to the answer. At the time of writing, the answer is not the accepted one, nor has it a high rating. But in my opinion, it is the best one.
 
 Even [Mozilla's website](https://support.mozilla.org/en-US/kb/setting-certificate-authorities-firefox) mentions it.
 
 ## Install the replacement lib
 
-The trick is changing Firefoxes behaviour by using another certificate management library.
+The trick is changing Firefox's behaviour by using another certificate management library.
 
-The replacement lib is to be found on [their website](https://p11-glue.github.io/p11-glue/p11-kit.html) or on their [Github page](https://github.com/p11-glue/p11-kit). The lib is also available on Ubuntu's repos.
+The replacement lib is to be found on [their website](https://p11-glue.github.io/p11-glue/p11-kit.html) or on their [Github page](https://github.com/p11-glue/p11-kit). The lib is also available on Ubuntu's repositories.
 
 ```
 $ sudo apt install p11-kit
 ```
 
-On my system it was already installed. Yeah!
+On my system, it was already installed. Yeah!
 
 ## Instruct Firefox to use the p11-kit
 
-Unlike in the Ask Ubuntu answer (which is already a few years old), Firefox has to option to import security modules. So we'll include the P11-kit module to import the certificates from our system into Firefox.
+Unlike the Ask Ubuntu answer (which is already a few years old), Firefox has the option to import security modules. So we'll include the P11-kit module to import the certificates from our system into Firefox.
 
 ### Open the settings page in Firefox
 
 ![Preferences](/assets/images/posts/firefox/1-preferences.jpg)
 
-### Click "Privicy & Security" and scroll to "Security"
+### Click "Privacy & Security" and scroll to "Security"
 
 ![Security settings](/assets/images/posts/firefox/2-security.jpg)
 
@@ -50,7 +50,7 @@ When you click "View Certificates" you'll get a list with all the trusted root c
 
 ![Certificates list](/assets/images/posts/firefox/3-certificates.jpg)
 
-Clost this screen.
+Close this screen.
 
 ### Add the custom module
 
@@ -58,16 +58,16 @@ Back in the settings screen, click "Security Devices". you'll get a screen with 
 
 ![Security devices](/assets/images/posts/firefox/4-load.jpg)
 
-click "Load".
+Click "Load".
 
 ![Add kit](/assets/images/posts/firefox/5-kit.jpg)
 
-Give the added module a sensible name and put in the path to the P11-kit module:
+Give the added module a sensible name and add the path to the P11-kit module:
 
 - Module name: P11 kit
 - Module filename: /usr/lib/x86_64-linux-gnu/pkcs11/p11-kit-trust.so
 
-Click "OK" The Device manager now shows the included module with it's certificate source.
+Click "OK" The Device manager now shows the included module with its certificate source.
 
 ![Added module](/assets/images/posts/firefox/6-added.jpg)
 
