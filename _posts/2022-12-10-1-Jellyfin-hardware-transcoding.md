@@ -55,7 +55,7 @@ Browse to your Jellyfin instance and add some libraries. Test and play around. I
 
 ## Enable hardware transcoding
 
-As soon as I [https://jellyfin.org/docs/general/administration/hardware-acceleration](enabled hardware transcoding), my (old) telefision refused to play the 4k movies I added. "This file is not supported" it said.
+As soon as I [enabled hardware transcoding](https://jellyfin.org/docs/general/administration/hardware-acceleration), my (old) telefision refused to play the 4k movies I added. "This file is not supported" it said.
 
 I had set the hardware acceleration to "Intel Quicksync (QSV)". After all, Intel itself says [on their website](https://www.intel.com/content/www/us/en/products/sku/128989/intel-celeron-j4105-processor-4m-cache-up-to-2-50-ghz/specifications.html) that the processor supports it.
 
