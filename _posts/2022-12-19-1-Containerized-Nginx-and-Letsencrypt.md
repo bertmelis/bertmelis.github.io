@@ -233,7 +233,9 @@ server {
 
 server {
     listen 443 ssl http2;
+    listen 443 http3
     listen [::]:443 ssl http2;
+    listen [::]:443 http3
     server_name sub.domain.tld;
 
     # use a variable to store the upstream proxy
