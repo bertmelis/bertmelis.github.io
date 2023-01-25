@@ -8,7 +8,7 @@ featured: false
 hidden: false
 ---
 
-When exposing services running on your home server to the Internet, you obviously only allow encrypted connections. I'm exposing Home Assistant, Jellyfin and some other things via a containerized Nginx with HTTP3 and I use Let's Encrypt to supply certificates.
+When exposing services running on your home server to the Internet, you only allow encrypted connections. I'm exposing Home Assistant, Jellyfin and some other things via a containerized Nginx with HTTP3 and I use Let's Encrypt to supply certificates.
 
 With this setup, you have an A+ rating at Qualys.
 
